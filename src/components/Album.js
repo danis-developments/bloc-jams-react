@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 
 class Album extends Component {
   constructor(props){
@@ -13,7 +14,7 @@ class Album extends Component {
       album: album,
       currentSong: album.songs[0],
       isPlaying: false,
-      focusedSong: -1,
+      focusedSongNumber: null,
     };
 
     this.audioElement = document.createElement('audio');
@@ -21,27 +22,18 @@ class Album extends Component {
 
   }
 
-  play() {
-    this.audioElement.play();
-    this.setState({ isPlaying: true });
-  }
+  /*
+  handleNextClick() {
 
-  pause(){
-    this.audioElement.pause();
-    this.setState({ isPlaying: false });
   }
+  */
 
-  setSong(song){
-    this.audioElement.src = song.audioSrc;
-    this.setState({ currentSong: song });
-  }
-
-  handleSongMouseEnter(song, index){
-    this.setState({ focusedSong: index });
-  }
-
-  handleSongMouseLeave(){
-    this.setState({ focusedSong: -1 });
+  handlePrevClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.max(0, currentIndex -1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play();
   }
 
   handleSongClick(song) {
@@ -54,6 +46,31 @@ class Album extends Component {
       }
       this.play();
     }
+  }
+
+  handleSongMouseEnter(index){
+    this.setState({ focusedSongNumber: index });
+  }
+
+  handleSongMouseLeave(){
+    this.setState({ focusedSongNumber: null });
+  }
+
+  pause(){
+    this.audioElement.pause();
+    this.setState({ isPlaying: false,
+                  });
+  }
+
+  play() {
+    this.audioElement.play();
+    this.setState({ isPlaying: true });
+  }
+
+  setSong(song){
+    this.audioElement.src = song.audioSrc;
+    this.setState({ currentSong: song, 
+                  });
   }
 
   render() {
@@ -78,7 +95,7 @@ class Album extends Component {
               let songNumberContent;
               if((song === this.state.currentSong) && this.state.isPlaying){
                 songNumberContent = (<span className="ion-md-pause"></span>)                        
-              } else if (index === this.state.focusedSong){
+              } else if (index === this.state.album.songs.findIndex(song => this.state.currentSong === song) || index === this.state.focusedSongNumber){
                 songNumberContent = (<span className="ion-md-play"></span>)                        
               } else {
                 songNumberContent = (index + 1)
@@ -86,8 +103,8 @@ class Album extends Component {
             
               return (<tr className="song" 
                           key={index} 
-                          onClick={() => this.handleSongClick(song)} 
-                          onMouseEnter={() => this.handleSongMouseEnter(song, index)}
+                          onClick={() => this.handleSongClick(song, index)} 
+                          onMouseEnter={() => this.handleSongMouseEnter(index)}
                           onMouseLeave={() => this.handleSongMouseLeave()} >
                         <td className="songNumber">{songNumberContent}</td>
                         <td>{song.title}</td>
@@ -97,6 +114,11 @@ class Album extends Component {
             }
           </tbody>
         </table>
+        <PlayerBar  isPlaying={this.state.isPlaying} 
+                    currentSong={this.state.currentSong} 
+                    /*handleNextClick={() => this.handleNextClick()}*/
+                    handlePrevClick={() => this.handlePrevClick()}
+                    handleSongClick={() => this.handleSongClick(this.state.currentSong)} />
       </section>
     );
   }
