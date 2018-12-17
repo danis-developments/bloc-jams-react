@@ -22,11 +22,15 @@ class Album extends Component {
 
   }
 
-  /*
+  
   handleNextClick() {
-
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.min(currentIndex + 1, this.state.album.songs.length - 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play();
   }
-  */
+  
 
   handlePrevClick() {
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
@@ -116,7 +120,7 @@ class Album extends Component {
         </table>
         <PlayerBar  isPlaying={this.state.isPlaying} 
                     currentSong={this.state.currentSong} 
-                    /*handleNextClick={() => this.handleNextClick()}*/
+                    handleNextClick={() => this.handleNextClick()}
                     handlePrevClick={() => this.handlePrevClick()}
                     handleSongClick={() => this.handleSongClick(this.state.currentSong)} />
       </section>
