@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import formatTime from './../modules/formatTime';
 import PlayerBar from './PlayerBar';
+
 
 class Album extends Component {
   constructor(props){
@@ -17,6 +19,7 @@ class Album extends Component {
       duration: album.songs[0].duration,
       focusedSongNumber: null,
       isPlaying: false,
+      volume: 0.8,
     };
 
     this.audioElement = document.createElement('audio');
@@ -76,10 +79,16 @@ class Album extends Component {
   handleTimeChange(e) {
     const newTime = this.audioElement.duration * e.target.value;
     this.audioElement.currentTime = newTime;
-    if(this.audioElement.currentTime == this.audioElement.duration){
+    if(this.audioElement.currentTime === this.audioElement.duration){
       this.pause();
     }
     this.setState({ currentTime: newTime });
+  }
+
+  handleVolumeChange(e) {
+    console.log("Volume Change" + e.target.value);
+    this.audioElement.volume = e.target.value;
+    this.setState({ volume: this.audioElement.volume });
   }
 
   handleSongMouseEnter(index){
@@ -142,7 +151,7 @@ class Album extends Component {
                           onMouseLeave={() => this.handleSongMouseLeave()} >
                         <td className="songNumber">{songNumberContent}</td>
                         <td>{song.title}</td>
-                        <td>{song.duration}</td>
+                        <td>{formatTime(song.duration)}</td>
                       </tr>)
               })
             }
@@ -153,10 +162,12 @@ class Album extends Component {
           currentSong={this.state.currentSong} 
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
+          volume={this.state.volume}
           handleNextClick={() => this.handleNextClick()}
           handlePrevClick={() => this.handlePrevClick()}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)} 
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
       </section>
     );
