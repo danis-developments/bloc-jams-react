@@ -116,6 +116,16 @@ class Album extends Component {
                   });
   }
 
+  songNumberPlayPauseIcon(song, index){
+    if((song === this.state.currentSong) && this.state.isPlaying){
+      return (<span className="ion-md-pause"></span>)                        
+    } else if (index === this.state.album.songs.findIndex(song => this.state.currentSong === song) || index === this.state.focusedSongNumber){
+     return (<span className="ion-md-play"></span>)                        
+    } else {
+      return (index + 1)
+    }
+  }
+
   render() {
     return (
       <section className="album">
@@ -135,21 +145,12 @@ class Album extends Component {
           </colgroup>
           <tbody>
             {this.state.album.songs.map((song, index) => {
-              let songNumberContent;
-              if((song === this.state.currentSong) && this.state.isPlaying){
-                songNumberContent = (<span className="ion-md-pause"></span>)                        
-              } else if (index === this.state.album.songs.findIndex(song => this.state.currentSong === song) || index === this.state.focusedSongNumber){
-                songNumberContent = (<span className="ion-md-play"></span>)                        
-              } else {
-                songNumberContent = (index + 1)
-              }
-            
               return (<tr className="song" 
                           key={index} 
                           onClick={() => this.handleSongClick(song, index)} 
                           onMouseEnter={() => this.handleSongMouseEnter(index)}
                           onMouseLeave={() => this.handleSongMouseLeave()} >
-                        <td className="songNumber">{songNumberContent}</td>
+                        <td className="songNumber">{this.songNumberPlayPauseIcon(song, index)}</td>
                         <td>{song.title}</td>
                         <td>{formatTime(song.duration)}</td>
                       </tr>)
@@ -160,8 +161,8 @@ class Album extends Component {
         <PlayerBar  
           isPlaying={this.state.isPlaying} 
           currentSong={this.state.currentSong} 
-          currentTime={this.audioElement.currentTime}
-          duration={this.audioElement.duration}
+          currentTime={this.state.currentTime}
+          duration={this.state.duration}
           volume={this.state.volume}
           handleNextClick={() => this.handleNextClick()}
           handlePrevClick={() => this.handlePrevClick()}
