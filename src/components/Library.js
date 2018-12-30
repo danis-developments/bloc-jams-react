@@ -12,11 +12,11 @@ class Library extends Component {
 
   render() {
     return(
-      <section className="library">
+      <section className="library center light-blue" id="jukebox-background">
         {
           this.state.albums.map( ( album, index) => 
-            <div key={index} >
-              <Link to={`/album/${album.slug}`} key={index}>
+            <div key={index} className="album">
+              <Link to={`/album/${album.slug}`} key={index} className="cyan-text text-accent-1 flex-text">
                 <img src={album.albumCover} alt={album.title} />
                 <div>{album.title}</div>
                 <div>{album.artist}</div>

@@ -1,4 +1,42 @@
+h1 {
+  margin: auto; 
+  text-decoration: underline;
+}
+
 .brand-logo img {
-  height: 64px;
+  height: 100%px;
   width: 64px;
 }
+
+.point-title {
+  font-size: 2rem;
+}
+
+#hero-image {
+  background-image: url("/assets/images/jukebox-web.jpg");
+  height: 500px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#jukebox-background {
+  background-image: url("/assets/images/blurred_backgrounds/jukebox.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+}
+
+
+.album {
+  padding: 30px 0;
+}
+
+.icon-block {
+  padding: 20px 0;
+}
+
+.player-bar {
+  padding: 20px 0;
+}
+

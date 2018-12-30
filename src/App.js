@@ -10,19 +10,17 @@ import Album from './components/Album';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header light-blue">
-          <nav>
-            <div className="nav-wrapper light-blue darken-4">
-              <Link to='/' className="brand-logo right"><img src="/assets/images/TuneBag-materialized.png" /></Link>
+      <div className="App light-blue darken-4">
+          <nav className="no-pad-bot">
+            <div className="nav-wrapper light-blue darken-4 valign-wrapper">
+              <Link to='/' className="brand-logo right cyan-text text-accent-1">TuneBag<img src="/assets/images/TuneBag-cropped.png" /></Link>
             </div>
           </nav>
-        </header>
-        <main>
+        <div id="jukebox-background">
           <Route exact path="/" component={Landing} />
           <Route path="/library" component={Library} />
           <Route path="/album/:slug" component={Album} />
-        </main>
+        </div>
       </div>
     );
   }

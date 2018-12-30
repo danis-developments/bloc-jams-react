@@ -52,8 +52,10 @@ class Album extends Component {
     const newIndex = Math.min(currentIndex + 1, this.state.album.songs.length - 1);
     const newSong = this.state.album.songs[newIndex];
     this.setSong(newSong);
-    this.play();
-  }
+    if(this.state.isPlaying){
+      this.play();
+    }
+   }
   
 
   handlePrevClick() {
@@ -61,7 +63,9 @@ class Album extends Component {
     const newIndex = Math.max(0, currentIndex -1);
     const newSong = this.state.album.songs[newIndex];
     this.setSong(newSong);
-    this.play();
+    if(this.state.isPlaying){
+      this.play();
+    }
   }
 
   handleSongClick(song) {
@@ -128,7 +132,7 @@ class Album extends Component {
 
   render() {
     return (
-      <section className="album">
+      <div className="album container center cyan-text text-accent-1">
         <section id="album-info">
           <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
           <div className="album-details">
@@ -170,7 +174,7 @@ class Album extends Component {
           handleTimeChange={(e) => this.handleTimeChange(e)}
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
-      </section>
+      </div>
     );
   }
 }
