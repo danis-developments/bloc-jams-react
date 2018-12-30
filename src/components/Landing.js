@@ -1,8 +1,11 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
 
 const Landing = () => (
   <section className="landing">
-    <h1 className="hero-title">Turn the music up!</h1>
+    <Link to='/library' ><h1 className="hero-title">Turn the music up!</h1>
+</Link>
+
     <section className="selling-points">
     <div className="point">
         <h2 className="point-title">Choose your music</h2>

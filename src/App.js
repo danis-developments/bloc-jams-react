@@ -1,3 +1,5 @@
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
@@ -9,12 +11,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header light-blue">
           <nav>
-            <Link to='/'>Landing</Link>
-            <Link to='/library'>Library</Link>
+            <div className="nav-wrapper light-blue darken-4">
+              <Link to='/' className="brand-logo right"><img src="/assets/images/TuneBag-materialized.png" /></Link>
+            </div>
           </nav>
-          <h1>Bloc Jams</h1>
         </header>
         <main>
           <Route exact path="/" component={Landing} />
