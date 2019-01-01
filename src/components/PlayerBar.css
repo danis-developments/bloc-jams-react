@@ -1,0 +1,13 @@
+.player-bar {
+    padding: 20px 0;
+}
+
+#time-label {
+    font-family: Roboto;
+    font-size: 1.3rem;
+}
+
+.current-volume {
+    font-family: Roboto;
+    font-size: 1.3rem;
+}

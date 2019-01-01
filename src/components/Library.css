@@ -1,0 +1,30 @@
+
+.library :hover {
+    background: rgba(0,0,0,.1);
+}
+
+.library > div :hover {
+    background: none;
+}
+
+.album-cover {
+    max-width: 80%;
+    max-height: 300px;
+}
+
+.album-details {
+}
+
+.album-name {
+    font-family: Roboto;
+    font-size: 2.4rem;
+}
+
+.album-artist {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.songs-number {
+
+}

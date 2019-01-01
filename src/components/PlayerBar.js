@@ -1,23 +1,26 @@
+import './PlayerBar.css';
 import React, {Component} from 'react';
 import formatTime from './../modules/formatTime';
 
 class PlayerBar extends Component {
   render() {
     return (
-      <section className="player-bar">
+      <section className="player-bar pad-top-20">
         <section id="buttons">
-          <button id="previous" onClick={this.props.handlePrevClick} >
-          <i className="small material-icons cyan-text text-accent-3">skip_previous</i>
-          </button>
-          <button id="play-pause" onClick={this.props.handleSongClick} >
+          <div className="btn" id="previous" onClick={this.props.handlePrevClick} >
+            <i className="small material-icons cyan-text text-accent-3">skip_previous</i>
+          </div>
+          <div className="btn" id="play-pause" onClick={this.props.handleSongClick} >
             <i className="small material-icons cyan-text text-accent-3">{ this.props.isPlaying ? 'pause' : 'play_arrow' }</i>
-          </button>
-          <button id="next" onClick={this.props.handleNextClick}>
-          <i className="small material-icons cyan-text text-accent-3">skip_next</i>
-          </button>
+          </div>
+          <div className="btn" id="next" onClick={this.props.handleNextClick}>
+            <i className="small material-icons cyan-text text-accent-3">skip_next</i>
+          </div>
         </section>
-        <section id="time-control">
-          <div className="current-time">{formatTime(this.props.currentTime)}</div>
+        <section id="time-control" className="pad-top-20">
+          <span className="current-time left">{formatTime(this.props.currentTime)}</span>
+          <span id="time-label" className="center">Time</span>
+          <span className="total-time right">{formatTime(this.props.duration)}</span>
           <input
             type="range"
             className="seek-bar"
@@ -27,7 +30,6 @@ class PlayerBar extends Component {
             step="0.01"
             onChange={this.props.handleTimeChange}
           />
-          <div className="total-time">{formatTime(this.props.duration)}</div>
         </section>
         <section id="volume-control">
           <input

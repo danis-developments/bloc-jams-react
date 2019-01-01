@@ -32,7 +32,6 @@ const Landing = () => (
           <i className="medium material-icons">phone_iphone</i>
           <h2 className="point-title">Mobile enabled</h2>
           <p className="point-description">Listen to your music on the go! TuneBag is available on all mobile platforms.</p>
-          <i className="tiny material-icons hide-on-med-and-up">fiber_manual_record</i>
         </div>
       </div>
     </section>

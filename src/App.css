@@ -20,23 +20,30 @@ h1 {
   background-repeat: no-repeat;
 }
 
-#jukebox-background {
+.jukebox-background {
   background-image: url("/assets/images/blurred_backgrounds/jukebox.jpg");
-  background-position: center;
   background-size: cover;
+}
+
+.vintage-concrete-background {
+  background-image: url("/assets/images/vintage-concrete.png");
   background-repeat: repeat;
 }
 
-
-.album {
-  padding: 30px 0;
+.vintage-concrete-blurred-background {
+  background-image: url("/assets/images/vintage-concrete-blurred.png");
+  background-repeat: repeat;
 }
 
 .icon-block {
   padding: 20px 0;
 }
 
-.player-bar {
-  padding: 20px 0;
+.pad-top-20 {
+  padding: 20px 0 0 0;
+}
+
+.pad-bottom-20 {
+  padding: 0 0 20px 0;
 }
 
